@@ -1,212 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>Azan App</title>
-    <link rel="manifest" href="manifest.json">
-    <!-- Add favicon -->
-    <link rel="icon" type="image/png" href="icon-192x192.png">
-    <!-- Add iOS icon -->
-    <link rel="apple-touch-icon" href="icon-192x192.png">
-    <style>
-        /* Basic styling for the app */
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        .prayer-time {
-            margin-bottom: 15px;
-            background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        label {
-            display: inline-block;
-            width: 100px;
-            color: #34495e;
-        }
-        input[type="time"] {
-            width: 150px;
-            padding: 8px;
-            border: 1px solid #bdc3c7;
-            border-radius: 4px;
-        }
-        .button-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #azanButton {
-            background-color: #3498db;
-            color: white;
-        }
-        #stopButton {
-            background-color: #e74c3c;
-            color: white;
-        }
-        button:hover {
-            opacity: 0.9;
-        }
-
-        /* Mobile-specific styles */
-        @media screen and (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            
-            .prayer-time {
-                margin-bottom: 15px;
-            }
-            
-            input[type="time"] {
-                width: 120px;
-                height: 40px;
-            }
-            
-            .button-container {
-                flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
-                height: 50px;
-                margin: 5px 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>Azan App</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="icon-192x192.png" />
+  <link rel="apple-touch-icon" href="icon-192x192.png" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .prayer-time {
+      margin-bottom: 15px;
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    label {
+      display: inline-block;
+      width: 100px;
+      color: #34495e;
+    }
+    input[type="time"] {
+      width: 150px;
+      padding: 8px;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+    }
+    .button-container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #azanButton {
+      background-color: #3498db;
+      color: white;
+    }
+    #stopButton {
+      background-color: #e74c3c;
+      color: white;
+    }
+    #startAppButton {
+      background-color: #2ecc71;
+      color: white;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    @media screen and (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      input[type="time"] {
+        width: 120px;
+        height: 40px;
+      }
+      .button-container {
+        flex-direction: column;
+      }
+      button {
+        width: 100%;
+        height: 50px;
+        margin: 5px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Azan App</h1>
-    
-    <!-- Prayer time input fields -->
-    <div id="prayer-times">
-        <div class="prayer-time">
-            <label for="fajr">Fajr:</label>
-            <input type="time" id="fajr" name="fajr">
-        </div>
-        <div class="prayer-time">
-            <label for="dhuhr">Dhuhr:</label>
-            <input type="time" id="dhuhr" name="dhuhr">
-        </div>
-        <div class="prayer-time">
-            <label for="asr">Asr:</label>
-            <input type="time" id="asr" name="asr">
-        </div>
-        <div class="prayer-time">
-            <label for="maghrib">Maghrib:</label>
-            <input type="time" id="maghrib" name="maghrib">
-        </div>
-        <div class="prayer-time">
-            <label for="isha">Isha:</label>
-            <input type="time" id="isha" name="isha">
-        </div>
-    </div>
+  <h1>Azan App</h1>
 
-    <!-- Azan and Stop buttons -->
-    <div class="button-container">
-        <button id="azanButton">Play Azan</button>
-        <button id="stopButton">Stop Azan</button>
-    </div>
+  <div class="button-container">
+    <button id="startAppButton">Start App</button>
+  </div>
 
-    <script>
-        // Audio object for Azan sound
-        const azanAudio = new Audio('adan.mp3');
+  <div id="prayer-times">
+    <div class="prayer-time"><label for="fajr">Fajr:</label><input type="time" id="fajr" name="fajr" /></div>
+    <div class="prayer-time"><label for="dhuhr">Dhuhr:</label><input type="time" id="dhuhr" name="dhuhr" /></div>
+    <div class="prayer-time"><label for="asr">Asr:</label><input type="time" id="asr" name="asr" /></div>
+    <div class="prayer-time"><label for="maghrib">Maghrib:</label><input type="time" id="maghrib" name="maghrib" /></div>
+    <div class="prayer-time"><label for="isha">Isha:</label><input type="time" id="isha" name="isha" /></div>
+  </div>
 
-        // Function to play Azan sound
-        function playAzan() {
-            azanAudio.play().catch(error => {
-                console.error('Error playing Azan:', error);
-                alert('Unable to play Azan. Please check your audio settings.');
-            });
-        }
+  <div class="button-container">
+    <button id="azanButton">Play Azan</button>
+    <button id="stopButton">Stop Azan</button>
+  </div>
 
-        // Function to stop Azan sound
-        function stopAzan() {
-            azanAudio.pause();
-            azanAudio.currentTime = 0;
-        }
+  <script>
+    const azanAudio = new Audio('adan.mp3');
+    let azanEnabled = false;
 
-        // Add click event listeners to buttons
-        document.getElementById('azanButton').addEventListener('click', playAzan);
-        document.getElementById('stopButton').addEventListener('click', stopAzan);
+    document.getElementById('startAppButton').addEventListener('click', () => {
+      azanAudio.play().then(() => {
+        azanAudio.pause();
+        azanAudio.currentTime = 0;
+        azanEnabled = true;
+        document.getElementById('startAppButton').style.display = 'none';
+        console.log('Azan app activated.');
+      }).catch(error => {
+        alert('Please interact with the page to enable audio playback.');
+        console.error('Audio activation failed:', error);
+      });
+    });
 
-        // Function to save prayer times to local storage
-        function savePrayerTimes() {
-            const prayerTimes = {};
-            document.querySelectorAll('#prayer-times input').forEach(input => {
-                prayerTimes[input.id] = input.value;
-            });
-            localStorage.setItem('prayerTimes', JSON.stringify(prayerTimes));
-        }
+    function playAzan() {
+      azanAudio.play().catch(error => {
+        console.error('Error playing Azan:', error);
+        alert('Unable to play Azan. Please check your audio settings.');
+      });
+    }
 
-        // Function to load prayer times from local storage
-        function loadPrayerTimes() {
-            const savedTimes = JSON.parse(localStorage.getItem('prayerTimes'));
-            if (savedTimes) {
-                Object.keys(savedTimes).forEach(id => {
-                    document.getElementById(id).value = savedTimes[id];
-                });
-            }
-        }
+    function stopAzan() {
+      azanAudio.pause();
+      azanAudio.currentTime = 0;
+    }
 
-        // Add change event listeners to all time inputs
-        document.querySelectorAll('#prayer-times input').forEach(input => {
-            input.addEventListener('change', savePrayerTimes);
+    document.getElementById('azanButton').addEventListener('click', playAzan);
+    document.getElementById('stopButton').addEventListener('click', stopAzan);
+
+    function savePrayerTimes() {
+      const prayerTimes = {};
+      document.querySelectorAll('#prayer-times input').forEach(input => {
+        prayerTimes[input.id] = input.value;
+      });
+      localStorage.setItem('prayerTimes', JSON.stringify(prayerTimes));
+    }
+
+    function loadPrayerTimes() {
+      const savedTimes = JSON.parse(localStorage.getItem('prayerTimes'));
+      if (savedTimes) {
+        Object.keys(savedTimes).forEach(id => {
+          document.getElementById(id).value = savedTimes[id];
         });
+      }
+    }
 
-        // Load saved prayer times when the page loads
-        document.addEventListener('DOMContentLoaded', loadPrayerTimes);
+    document.querySelectorAll('#prayer-times input').forEach(input => {
+      input.addEventListener('change', savePrayerTimes);
+    });
 
-        // Function to check if it's time for Azan
-        function checkAzanTime() {
-            const now = new Date();
-            const currentTime = now.getHours().toString().padStart(2, '0') + ':' + 
-                                now.getMinutes().toString().padStart(2, '0');
+    document.addEventListener('DOMContentLoaded', loadPrayerTimes);
 
-            document.querySelectorAll('#prayer-times input').forEach(input => {
-                if (input.value === currentTime) {
-                    playAzan();
-                    alert(`It's time for ${input.name} prayer!`);
-                }
-            });
+    function checkAzanTime() {
+      if (!azanEnabled) return;
+      const now = new Date();
+      const currentTime = now.getHours().toString().padStart(2, '0') + ':' +
+                          now.getMinutes().toString().padStart(2, '0');
+      document.querySelectorAll('#prayer-times input').forEach(input => {
+        if (input.value === currentTime) {
+          playAzan();
         }
+      });
+    }
 
-        // Check for Azan time every minute
-        setInterval(checkAzanTime, 60000);
+    setInterval(checkAzanTime, 60000);
 
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(function(err) {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
-    </script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
